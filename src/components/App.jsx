@@ -1,4 +1,12 @@
 /* <Searchbar>, <ImageGallery>, <ImageGalleryItem>, <Loader>, <Button>, <Modal></Modal> */
+/* 
+Searchbar.styled.js
+ImageGallery.styled.js
+ImageGalleryItem.styled.js
+Loader.styled.js
+Button.styled.js
+Modal.styled.js
+></  */
 
 export const App = () => {
   return (
