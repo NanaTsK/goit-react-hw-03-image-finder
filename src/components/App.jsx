@@ -1,29 +1,18 @@
+import { Component } from 'react';
+import { Container } from './index.styled';
+import { Searchbar } from './Searchbar/Searchbar';
 /* <Searchbar>, <ImageGallery>, <ImageGalleryItem>, <Loader>, <Button>, <Modal></Modal> */
-/* 
-Searchbar.styled.js
-ImageGallery.styled.js
-ImageGalleryItem.styled.js
-Loader.styled.js
-Button.styled.js
-Modal.styled.js
-></  */
 
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101',
-      }}
-    >
-      goit-react-hw-03-image-finder
-    </div>
-  );
-};
+export class App extends Component {
+  state = {};
+  render() {
+    return (
+      <Container>
+        <Searchbar></Searchbar>
+      </Container>
+    );
+  }
+}
 
 // import { Component } from 'react';
 // import { Container } from './index.styled';
