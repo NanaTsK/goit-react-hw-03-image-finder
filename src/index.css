@@ -40,6 +40,17 @@ img {
   height: auto;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: transform 400ms ease-out;
+}
+
+img:hover {
+  transform: scale(1.15);
+}
+
 /* h1,
 h2 {
   text-shadow: 1px 3px 0 #505050, -1px 3px 0 #505050;

@@ -9,3 +9,12 @@ export const Container = styled.div`
   padding: 10px;
   width: 340px;
 `;
+
+// export const StyledApp = styled('div')(() => {
+//   return {
+//     display: 'grid',
+//     gridTemplateColumns: '1fr',
+//     gridGap: '16px',
+//     paddingBottom: '24px',
+//   };
+// });

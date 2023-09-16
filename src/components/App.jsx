@@ -1,3 +1,5 @@
+/* <Searchbar>, <ImageGallery>, <ImageGalleryItem>, <Loader>, <Button>, <Modal></Modal> */
+
 export const App = () => {
   return (
     <div
