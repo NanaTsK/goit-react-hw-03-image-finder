@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { Searchbar } from './Searchbar';
 
-const transition = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
+// const transition = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
 // export const Searchbar = styled('form')({});
 
