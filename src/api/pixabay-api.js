@@ -26,14 +26,14 @@ export const fetchImages = async (searchQuery, page) => {
   return data;
 };
 
-export const changePage = page => {
-  page += 1;
-  return page;
-};
+// export const changePage = page => {
+//   page += 1;
+//   return page;
+// };
 
-export const resetPage = () => {
-  return 1;
-};
+// export const resetPage = () => {
+//   return 1;
+// };
 // export const resetPage = (page) => {
 //   page = 1;
 // };
