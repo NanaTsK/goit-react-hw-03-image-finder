@@ -3,17 +3,18 @@ import axios from 'axios';
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '38687572-8bc90b5796d20c3c60f436eda';
 
-//   q = null;
-//   page = 1;
+// q = null;
+// page = 1;
 
-export const fetchImages = async (value, page) => {
+export const fetchImages = async (searchQuery, page) => {
+  //   const q = null;
   const option = {
     headers: {
       'Content-type': 'application/json',
     },
     params: {
       key: API_KEY,
-      q: `${value}`,
+      q: `${searchQuery}`,
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: 'true',
@@ -27,11 +28,15 @@ export const fetchImages = async (value, page) => {
 
 export const changePage = page => {
   page += 1;
+  return page;
 };
 
-export const resetPage = page => {
-  page = 1;
+export const resetPage = () => {
+  return 1;
 };
+// export const resetPage = (page) => {
+//   page = 1;
+// };
 
 // class PixaBayAPI {
 //   #BASE_URL = 'https://pixabay.com/api/';
