@@ -48,7 +48,7 @@ export class Searchbar extends Component {
     return (
       <SearchBarHeader>
         <SearchForm onSubmit={this.handleSubmit}>
-          <SearchFormBtn className="btn-form" type="submit">
+          <SearchFormBtn type="submit">
             <AiOutlineSearch />
           </SearchFormBtn>
           <SearchFormInput
