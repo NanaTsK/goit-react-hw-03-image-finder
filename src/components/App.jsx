@@ -4,6 +4,7 @@ import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api/pixabay-api';
 import { Button } from './Button/Button';
+import { Loader } from './Loader/Loader';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -20,7 +21,7 @@ const notifyInit = Notify.init({
 
 // Notify.success(`xxx`, notifyInit);
 
-/* <Loader/>, <Modal/> */
+/*  <Modal/> */
 
 export class App extends Component {
   state = {
@@ -94,7 +95,7 @@ export class App extends Component {
   render() {
     const {
       images,
-      // loader,
+      loader,
       error,
       // isShowModal,
       // imageForModal,
@@ -110,6 +111,7 @@ export class App extends Component {
         {images && images.length > 0 && (
           <ImageGallery images={images} getModalPhoto={getModalPhoto} />
         )}
+        {loader && <Loader />}
         {error && <p>Oooops! Something went wrong...</p>}
         {images && images.length > 0 && result < totalHits && (
           <Button handleLoadMore={handleLoadMore} />
