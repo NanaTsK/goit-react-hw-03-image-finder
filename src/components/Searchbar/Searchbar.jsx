@@ -1,22 +1,29 @@
 import { Component } from 'react';
-import { WrapperForm } from './Searchbar.styled';
+import {
+  SearchBarHeader,
+  SearchForm,
+  SearchFormBtn,
+  SearchFormInput,
+} from './Searchbar.styled';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 export class Searchbar extends Component {
   render() {
     return (
-      <WrapperForm>
-        <form class="search-form" id="search-form">
-          <input
+      <SearchBarHeader>
+        <SearchForm>
+          <SearchFormBtn className="btn-form" type="submit">
+            <AiOutlineSearch />
+          </SearchFormBtn>
+          <SearchFormInput
             type="text"
             name="searchQuery"
-            autocomplete="off"
-            placeholder="Search images..."
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
           />
-          <button class="btn-form" type="submit">
-            Search
-          </button>
-        </form>
-      </WrapperForm>
+        </SearchForm>
+      </SearchBarHeader>
     );
   }
 }
