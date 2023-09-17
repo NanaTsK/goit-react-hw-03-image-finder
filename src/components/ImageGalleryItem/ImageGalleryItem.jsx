@@ -3,11 +3,11 @@ import { GalleryItem, GalleryImg } from './ImageGalleryItem.styled';
 export const ImageGalleryItem = ({
   webformatURL,
   largeImageURL,
-  getModalPhoto,
+  getModalImage,
   tags,
 }) => {
   return (
-    <GalleryItem onClick={() => getModalPhoto(largeImageURL)}>
+    <GalleryItem onClick={() => getModalImage(largeImageURL)}>
       <GalleryImg src={webformatURL} alt={tags} />
     </GalleryItem>
   );
