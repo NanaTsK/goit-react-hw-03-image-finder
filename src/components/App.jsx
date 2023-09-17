@@ -57,9 +57,12 @@ export class App extends Component {
         return;
       }
       this.setState(prevState => ({
-        images: [...prevState.images, ...data.hits],
+        // images: [...prevState.images, ...data.hits],
+        images: data.hits,
         // result: this.state.page * 12,
         // totalHits: data.totalHits,
+        //or
+        // totalPage: Math.ceil(data.totalHits / 12),
       }));
     } catch (error) {
       this.setState({ error: true });
