@@ -2,16 +2,6 @@ import styled from 'styled-components';
 
 const transition = '250ms cubic-bezier(0.4, 0, 0.2, 1)';
 
-//   transition: `borderColor ${transition}`,
-
-//   '&:focus + label': {
-//     color: 'rgb(243, 243, 116)',
-//   },
-//   '&:focus': {
-//     borderColor: 'rgb(243, 243, 116)',
-
-// export const Searchbar = styled('form')({});
-
 export const SearchBarHeader = styled('header')({
   top: '0',
   left: '0',
@@ -22,7 +12,6 @@ export const SearchBarHeader = styled('header')({
   alignItems: 'center',
   minHeight: '64px',
   padding: '12px 24px',
-  //   color: '#fff',
   backgroundColor: 'rgba(38, 192, 211, 0.8)',
   boxShadow: '0px 4px 10px 2px rgba(0, 0, 0, 0.5)',
 });
@@ -78,26 +67,3 @@ export const SearchFormInput = styled('input')({
     opacity: '0.4',
   },
 });
-
-// .SearchForm-button-label {
-//   position: absolute;
-//   width: 1px;
-//   height: 1px;
-//   padding: 0;
-//   overflow: hidden;
-//   clip: rect(0, 0, 0, 0);
-//   white-space: nowrap;
-//   clip-path: inset(50%);
-//   border: 0;
-// }
-
-// input {
-//   padding: 12px;
-//   font: inherit;
-//   margin-left: 12px;
-//   margin-right: 12px;
-//   border: rgba(0, 0, 0, 0.4) 1px solid;
-//   border-radius: 6px;
-//   background-color: #fafafa;
-//   outline: none;
-// }
