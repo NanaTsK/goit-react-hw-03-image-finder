@@ -3,6 +3,7 @@ import { Container } from './index.styled';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api/pixabay-api';
+import { Button } from './Button/Button';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -19,19 +20,20 @@ const notifyInit = Notify.init({
 
 // Notify.success(`xxx`, notifyInit);
 
-/* <Loader/>, <Button/>, <Modal/> */
+/* <Loader/>, <Modal/> */
 
 export class App extends Component {
   state = {
     images: [],
+    loadedImages: [], //* All loaded images
     error: false,
     loader: false,
     searchQuery: '',
     // isShowModal: false,
     // imageForModal: '',
     page: 1,
-    // totalHits: null,
-    // result: null,
+    totalHits: null,
+    result: null,
   };
 
   componentDidUpdate(_, prevState) {
@@ -56,11 +58,23 @@ export class App extends Component {
         );
         return;
       }
+      //* Filter out duplicate images based on unique ID
+      const newImages = data.hits.filter(
+        newImage =>
+          !this.state.loadedImages.some(image => image.id === newImage.id)
+      );
+
       this.setState(prevState => ({
+        loadedImages: [...prevState.loadedImages, ...newImages], //* Append new unique images to loadedImages
+        images:
+          prevState.page === 1
+            ? newImages.slice(0, 12)
+            : prevState.images.concat(newImages), //* Display only 12 initially, then concatenate
+
         // images: [...prevState.images, ...data.hits],
-        images: data.hits,
-        // result: this.state.page * 12,
-        // totalHits: data.totalHits,
+        // images: data.hits,
+        result: this.state.page * 12,
+        totalHits: data.totalHits,
         //or
         // totalPage: Math.ceil(data.totalHits / 12),
       }));
@@ -75,6 +89,16 @@ export class App extends Component {
     this.setState({ searchQuery, page: 1, images: [] }, this.fetchInputImages);
   };
 
+  // handleLoadMore = () => {
+  //   this.setState(({ page }) => ({ page: page + 1 }));
+  // };
+  handleLoadMore = () => {
+    this.setState(
+      prevState => ({ page: prevState.page + 1 }),
+      this.fetchInputImages
+    );
+  };
+
   render() {
     const {
       images,
@@ -82,19 +106,22 @@ export class App extends Component {
       error,
       // isShowModal,
       // imageForModal,
-      // totalHits,
-      // result,
+      totalHits,
+      result,
     } = this.state;
-    const { getModalPhoto } = this;
+    const { handleSubmit, getModalPhoto, handleLoadMore } = this;
     // const { handleSubmit, getModalPhoto, getMorePhoto, closeModal } = this;
 
     return (
       <Container>
-        <Searchbar onSubmit={this.handleSubmit} />
+        <Searchbar onSubmit={handleSubmit} />
         {images && images.length > 0 && (
           <ImageGallery images={images} getModalPhoto={getModalPhoto} />
         )}
         {error && <p>Oooops! Something went wrong...</p>}
+        {images && images.length > 0 && result < totalHits && (
+          <Button handleLoadMore={handleLoadMore} />
+        )}
       </Container>
     );
   }
