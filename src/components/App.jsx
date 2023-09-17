@@ -65,7 +65,7 @@ export class App extends Component {
       );
 
       this.setState(prevState => ({
-        loadedImages: [...prevState.loadedImages, ...newImages], //* Append new unique images to loadedImages
+        loadedImages: [...prevState.loadedImages, ...newImages],
         images:
           prevState.page === 1
             ? newImages.slice(0, 12)
@@ -75,8 +75,6 @@ export class App extends Component {
         // images: data.hits,
         result: this.state.page * 12,
         totalHits: data.totalHits,
-        //or
-        // totalPage: Math.ceil(data.totalHits / 12),
       }));
     } catch (error) {
       this.setState({ error: true });
@@ -89,14 +87,8 @@ export class App extends Component {
     this.setState({ searchQuery, page: 1, images: [] }, this.fetchInputImages);
   };
 
-  // handleLoadMore = () => {
-  //   this.setState(({ page }) => ({ page: page + 1 }));
-  // };
   handleLoadMore = () => {
-    this.setState(
-      prevState => ({ page: prevState.page + 1 }),
-      this.fetchInputImages
-    );
+    this.setState(({ page }) => ({ page: page + 1 }));
   };
 
   render() {
