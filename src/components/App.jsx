@@ -5,6 +5,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api/pixabay-api';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
+// import { Modal } from './Modal/Modal';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -20,8 +21,6 @@ const notifyInit = Notify.init({
 });
 
 // Notify.success(`xxx`, notifyInit);
-
-/*  <Modal/> */
 
 export class App extends Component {
   state = {
