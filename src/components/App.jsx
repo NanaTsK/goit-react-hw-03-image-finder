@@ -5,7 +5,7 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api/pixabay-api';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
-// import { Modal } from './Modal/Modal';
+import { Modal } from './Modal/Modal';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
@@ -16,8 +16,8 @@ export class App extends Component {
     error: false,
     loader: false,
     searchQuery: '',
-    // isShowModal: false,
-    // imageForModal: '',
+    isShowModal: false,
+    imageForModal: '',
     page: 1,
     totalHits: null,
     result: null,
@@ -67,29 +67,42 @@ export class App extends Component {
     this.setState(({ page }) => ({ page: page + 1 }));
   };
 
+  getModalImage = image => {
+    this.setState({
+      imageForModal: image,
+      isShowModal: true,
+    });
+  };
+
+  closeModal = () => {
+    this.setState({ isShowModal: false });
+  };
+
   render() {
     const {
       images,
       loader,
       error,
-      // isShowModal,
-      // imageForModal,
+      isShowModal,
+      imageForModal,
       totalHits,
       result,
     } = this.state;
-    const { handleSubmit, getModalPhoto, handleLoadMore } = this;
-    // const { handleSubmit, getModalPhoto, getMorePhoto, closeModal } = this;
+    const { handleSubmit, getModalImage, handleLoadMore, closeModal } = this;
 
     return (
       <Container>
         <Searchbar onSubmit={handleSubmit} />
         {images && images.length > 0 && (
-          <ImageGallery images={images} getModalPhoto={getModalPhoto} />
+          <ImageGallery images={images} getModalImage={getModalImage} />
         )}
         {loader && <Loader />}
         {error && <ErrorMessage>Oooops! Something went wrong...</ErrorMessage>}
         {images && images.length > 0 && result < totalHits && (
           <Button handleLoadMore={handleLoadMore} />
+        )}
+        {isShowModal && (
+          <Modal largeImageURL={imageForModal} closeModal={closeModal} />
         )}
       </Container>
     );

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { ModalOverlay, ModalWindow } from './Modal.styled';
 
 export class Modal extends Component {
@@ -17,16 +17,23 @@ export class Modal extends Component {
   closeModal = ({ target, currentTarget }) => {
     if (target === currentTarget) this.props.closeModal();
   };
+
+  preventImageClickClose = e => {
+    e.stopPropagation();
+  };
+
   render() {
-    const { largeImageURL, tags } = this.props;
+    const { largeImageURL, tags, closeModal } = this.props;
     return (
-      <ModalOverlay onClick={this.closeModal}>
+      <ModalOverlay onClick={closeModal}>
         <ModalWindow>
-          <img src={largeImageURL} alt={tags} />
+          <img
+            src={largeImageURL}
+            alt={tags}
+            onClick={this.preventImageClickClose}
+          />
         </ModalWindow>
       </ModalOverlay>
     );
   }
 }
-
-export default Modal;
