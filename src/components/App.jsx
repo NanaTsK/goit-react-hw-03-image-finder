@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container } from './index.styled';
+import { Container, ErrorMessage, notifyInit } from './index.styled';
 import { Searchbar } from './Searchbar/Searchbar';
 import { ImageGallery } from './ImageGallery/ImageGallery';
 import { fetchImages } from '../api/pixabay-api';
@@ -9,23 +9,10 @@ import { Loader } from './Loader/Loader';
 
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const notifyInit = Notify.init({
-  width: '280px',
-  position: 'center-center',
-  distance: '20px',
-  opacity: 0.8,
-  fontSize: '20px',
-  borderRadius: '50px 10px',
-  notiflixIconColor: 'rgba(0,0,0,0.6)',
-  pauseOnHover: true,
-});
-
-// Notify.success(`xxx`, notifyInit);
-
 export class App extends Component {
   state = {
     images: [],
-    loadedImages: [], //* All loaded images
+    // loadedImages: [], //* All loaded images
     error: false,
     loader: false,
     searchQuery: '',
@@ -35,6 +22,8 @@ export class App extends Component {
     totalHits: null,
     result: null,
   };
+
+  // Notify.success(`Hooray! We found ${this.state.totalHits} images.`, notifyInit)
 
   componentDidUpdate(_, prevState) {
     if (
@@ -98,7 +87,7 @@ export class App extends Component {
           <ImageGallery images={images} getModalPhoto={getModalPhoto} />
         )}
         {loader && <Loader />}
-        {error && <p>Oooops! Something went wrong...</p>}
+        {error && <ErrorMessage>Oooops! Something went wrong...</ErrorMessage>}
         {images && images.length > 0 && result < totalHits && (
           <Button handleLoadMore={handleLoadMore} />
         )}

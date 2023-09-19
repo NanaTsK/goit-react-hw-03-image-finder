@@ -7,19 +7,7 @@ import {
 } from './Searchbar.styled';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-
-const notifyInit = Notify.init({
-  width: '280px',
-  position: 'center-center',
-  distance: '20px',
-  opacity: 0.8,
-  fontSize: '20px',
-  borderRadius: '50px 10px',
-  notiflixIconColor: 'rgba(0,0,0,0.6)',
-  pauseOnHover: true,
-});
-
-// Notify.success(`xxx`, notifyInit);
+import { notifyInit } from '../index.styled';
 
 const INITIAL_STATE = {
   inputQuery: '',

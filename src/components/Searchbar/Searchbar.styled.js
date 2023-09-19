@@ -21,8 +21,6 @@ export const SearchForm = styled('form')({
   alignItems: 'center',
   width: '80%',
   maxWidth: '600px',
-  //   marginLeft: '50%',
-  //   transform: 'translateX(-50%)',
   backgroundColor: 'whitesmoke',
   borderRadius: '3px',
   overflow: 'hidden',
