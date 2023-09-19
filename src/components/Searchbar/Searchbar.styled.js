@@ -65,3 +65,11 @@ export const SearchFormInput = styled('input')({
     opacity: '0.4',
   },
 });
+
+export const CurrentPage = styled('button')({
+  background: 'transparent',
+  border: 'none',
+  fontSize: '20px',
+  paddingLeft: '10px',
+  color: '#fefefe',
+});

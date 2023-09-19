@@ -18,6 +18,7 @@ export class App extends Component {
     isShowModal: false,
     imageForModal: '',
     page: 1,
+    totalPage: 0,
     totalHits: null,
     result: null,
   };
@@ -48,6 +49,7 @@ export class App extends Component {
         images: [...prevState.images, ...data.hits],
         result: this.state.page * 12,
         totalHits: data.totalHits,
+        totalPage: Math.ceil(data.totalHits / 12),
       }));
     } catch (error) {
       this.setState({ error: true });
@@ -84,12 +86,14 @@ export class App extends Component {
       imageForModal,
       totalHits,
       result,
+      totalPage,
+      page,
     } = this.state;
     const { handleSubmit, getModalImage, handleLoadMore, closeModal } = this;
 
     return (
       <Container>
-        <Searchbar onSubmit={handleSubmit} />
+        <Searchbar onSubmit={handleSubmit} currentPage={{ page, totalPage }} />
         {images && images.length > 0 && (
           <ImageGallery images={images} getModalImage={getModalImage} />
         )}

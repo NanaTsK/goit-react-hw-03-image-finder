@@ -4,6 +4,7 @@ import {
   SearchForm,
   SearchFormBtn,
   SearchFormInput,
+  CurrentPage,
 } from './Searchbar.styled';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
@@ -33,6 +34,9 @@ export class Searchbar extends Component {
   };
 
   render() {
+    const {
+      currentPage: { page, totalPage },
+    } = this.props;
     return (
       <SearchBarHeader>
         <SearchForm onSubmit={this.handleSubmit}>
@@ -49,6 +53,12 @@ export class Searchbar extends Component {
             value={this.state.inputQuery}
           />
         </SearchForm>
+
+        {totalPage > 1 && (
+          <CurrentPage>
+            {page}/{totalPage}
+          </CurrentPage>
+        )}
       </SearchBarHeader>
     );
   }
