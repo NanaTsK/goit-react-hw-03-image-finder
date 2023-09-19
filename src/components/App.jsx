@@ -12,7 +12,6 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export class App extends Component {
   state = {
     images: [],
-    // loadedImages: [], //* All loaded images
     error: false,
     loader: false,
     searchQuery: '',
@@ -22,8 +21,6 @@ export class App extends Component {
     totalHits: null,
     result: null,
   };
-
-  // Notify.success(`Hooray! We found ${this.state.totalHits} images.`, notifyInit)
 
   componentDidUpdate(_, prevState) {
     if (

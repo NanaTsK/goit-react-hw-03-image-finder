@@ -1,13 +1,16 @@
 import { Component } from 'react';
 import { ModalOverlay, ModalWindow } from './Modal.styled';
+import { disablePageScroll, enablePageScroll } from 'scroll-lock';
 
 export class Modal extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.closeModalByEsc);
+    disablePageScroll();
   }
 
   componentWillUnmount() {
     document.removeEventListener('keydown', this.closeModalByEsc);
+    enablePageScroll();
   }
 
   closeModalByEsc = ({ code }) => {
