@@ -32,10 +32,7 @@ export class App extends Component {
   fetchInputImages = async () => {
     try {
       this.setState({ loader: true });
-      const { data } = await fetchImages(
-        this.state.searchQuery,
-        this.state.page
-      );
+      const data = await fetchImages(this.state.searchQuery, this.state.page);
       if (!data.hits.length) {
         Notify.warning(
           `Sorry, there are no images matching your search query. Please try again.`,
@@ -43,9 +40,19 @@ export class App extends Component {
         );
         return;
       }
+
+      const normalized = data.hits.map(
+        ({ id, tags, webformatURL, largeImageURL }) => ({
+          id,
+          tags,
+          webformatURL,
+          largeImageURL,
+        })
+      );
+
       this.setState(prevState => ({
-        images: [...prevState.images, ...data.hits],
-        totalPage: Math.ceil(data.totalHits / 12),
+        images: [...prevState.images, ...normalized],
+        totalPage: Math.ceil(data.totalHits / data.perPage),
       }));
     } catch (error) {
       this.setState({ error: true });
