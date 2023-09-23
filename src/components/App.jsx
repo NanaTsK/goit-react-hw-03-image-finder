@@ -19,8 +19,6 @@ export class App extends Component {
     imageForModal: '',
     page: 1,
     totalPage: 0,
-    totalHits: null,
-    result: null,
   };
 
   componentDidUpdate(_, prevState) {
@@ -47,8 +45,6 @@ export class App extends Component {
       }
       this.setState(prevState => ({
         images: [...prevState.images, ...data.hits],
-        result: this.state.page * 12,
-        totalHits: data.totalHits,
         totalPage: Math.ceil(data.totalHits / 12),
       }));
     } catch (error) {
@@ -59,7 +55,7 @@ export class App extends Component {
   };
 
   handleSubmit = searchQuery => {
-    this.setState({ searchQuery, page: 1, images: [] });
+    this.setState({ searchQuery, page: 1, images: [], totalPage: 0 });
   };
 
   handleLoadMore = () => {
@@ -84,8 +80,6 @@ export class App extends Component {
       error,
       isShowModal,
       imageForModal,
-      totalHits,
-      result,
       totalPage,
       page,
     } = this.state;
@@ -99,7 +93,7 @@ export class App extends Component {
         )}
         {loader && <Loader />}
         {error && <ErrorMessage>Oooops! Something went wrong...</ErrorMessage>}
-        {images && images.length > 0 && result < totalHits && (
+        {totalPage > 0 && totalPage !== page && (
           <Button handleLoadMore={handleLoadMore} />
         )}
         {isShowModal && (
